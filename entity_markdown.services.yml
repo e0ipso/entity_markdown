@@ -1,4 +1,10 @@
 services:
+  # The encoder is the formal way to declare a format in Drupal.
+  serializer.entity_markdown.markdown.encoder:
+    class: Drupal\entity_markdown\Encoder\Markdown
+    tags:
+      - { name: encoder, priority: 10, format: 'markdown' }
+
   # The serializer that will transform content entities into MarkDown versions
   # of them
   serializer.entity_markdown.markdown.content_entity:
