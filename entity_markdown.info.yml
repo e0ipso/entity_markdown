@@ -1,0 +1,7 @@
+name: Entity Markdown
+type: module
+description: Example module on how to use the serializer component.
+package: Development
+core: 8.x
+dependencies:
+  - rest

@@ -1,0 +1,7 @@
+services:
+  # The serializer that will transform content entities into MarkDown versions
+  # of them
+  serializer.entity_markdown.markdown.content_entity:
+    class: Drupal\entity_markdown\Normalizer\ContentEntityNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
