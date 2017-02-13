@@ -24,7 +24,15 @@ class Markdown implements EncoderInterface {
    * {@inheritdoc}
    */
   public function encode($data, $format, array $context = []) {
-    throw new \RuntimeException('Encoding is not yet implemented.');
+    $lines = [];
+    foreach ($data as $item) {
+      $line = isset($item['value']) ? $item['value'] : '';
+      $line = isset($item['prefix']) ? $item['prefix'] . $line : $line;
+      $line = isset($item['suffix']) ? $item['suffix'] . $line : $line;
+      $lines[] = $line;
+    }
+
+    return implode("\n", $lines);
   }
 
 }
