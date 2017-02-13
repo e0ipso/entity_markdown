@@ -6,8 +6,21 @@ services:
       - { name: encoder, priority: 10, format: 'markdown' }
 
   # The serializer that will transform content entities into MarkDown versions
-  # of them
+  # of them.
   serializer.entity_markdown.markdown.content_entity:
     class: Drupal\entity_markdown\Normalizer\ContentEntityNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
+
+  # The serializer that will transform field item lists into MarkDown versions
+  # of them.
+  serializer.entity_markdown.markdown.field_item_list:
+    class: Drupal\entity_markdown\Normalizer\FieldItemListNormalizer
+    tags:
+      - { name: normalizer, priority: 10 }
+  # The serializer that will transform field items into MarkDown versions of
+  # them.
+  serializer.entity_markdown.markdown.field_item:
+    class: Drupal\entity_markdown\Normalizer\FieldItemNormalizer
     tags:
       - { name: normalizer, priority: 10 }

@@ -23,7 +23,7 @@ class Markdown implements EncoderInterface {
   /**
    * {@inheritdoc}
    */
-  public function encode($data, $format, array $context = array()) {
+  public function encode($data, $format, array $context = []) {
     throw new \RuntimeException('Encoding is not yet implemented.');
   }
 
