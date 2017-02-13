@@ -36,12 +36,12 @@ class FieldItemNormalizer extends SerializerAwareNormalizer implements Normalize
       return $this->serializer->normalize($main_property) ?: '';
     }
 
-    $output = '';
+    $output = "\n";
     foreach ($field_item as $property_name => $property) {
       // This will generate a nested list (in case the field is multivalue) with
       // the property in bold followed by a ':' and the value.
       $item_value = $this->serializer->normalize($property, $format, $context);
-      $output .= "    * **$property_name**: $item_value";
+      $output .= "  * **$property_name**: $item_value\n";
     }
 
     return $output;

@@ -35,10 +35,13 @@ class ContentEntityNormalizer extends SerializerAwareNormalizer implements Norma
 
     // Add the information about the fields. This code will return an array with
     // the information for each field in the entity.
-    $normalized_fields = array_map(function (FieldItemListInterface $field_item_list) use ($format, $context) {
+    $normalized_fields = [];
+    foreach ($entity->getFields(TRUE) as $field_item_list) {
       // Defer the field normalization to other individual normalizers.
-      return $this->serializer->normalize($field_item_list, $format, $context);
-    }, $entity->getFields(TRUE));
+      $normalized_field_item = $this->serializer->normalize($field_item_list, $format, $context);
+      $normalized_fields[] = $normalized_field_item['name'];
+      $normalized_fields[] = $normalized_field_item['content'];
+    }
 
     // Append the field information to the normalized data array.
     $normalized['fields'] = ['prefix' => '## ', 'value' => $this->t('Fields')];
